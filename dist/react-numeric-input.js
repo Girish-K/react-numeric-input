@@ -127,11 +127,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * The deault behaviour is to start from 0, use step of 1 and display
 	     * integers
 	     */
-
 	    function NumericInput(props) {
 	        _classCallCheck(this, NumericInput);
 
-	        var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(NumericInput).call(this, props));
+	        var _this = _possibleConstructorReturn(this, (NumericInput.__proto__ || Object.getPrototypeOf(NumericInput)).call(this, props));
 
 	        _this._timer = null;
 	        _this._valid = undefined;
@@ -166,8 +165,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	     * When click and hold on a button - the delay before auto changin the value.
 	     * This is a static property and can be modified if needed.
 	     */
-	    //,
-	    // noValidate: false
 
 
 	    /**
@@ -461,11 +458,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            _this3.props.onSelect.call(_this3.refs.input, e);
 	                        }
 	                        break;
-	                    case "selectstart":
-	                        if (_this3.props.onSelectStart) {
-	                            _this3.props.onSelectStart.call(_this3.refs.input, e);
-	                        }
-	                        break;
+	                    // case "selectstart":
+	                    //     if (this.props.onSelectStart) {
+	                    //         this.props.onSelectStart.call(this.refs.input, e)
+	                    //     }
+	                    //     break;
 	                }
 	            });
 	        }
@@ -589,23 +586,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	            var state = this.state;
 	            var css = {};
 
-	            var _props = this.props;
-	            var
-	            // These are ignored in rendering
-	            step = _props.step;
-	            var min = _props.min;
-	            var max = _props.max;
-	            var precision = _props.precision;
-	            var parse = _props.parse;
-	            var format = _props.format;
-	            var value = _props.value;
-	            var type = _props.type;
-	            var style = _props.style;
-	            var defaultValue = _props.defaultValue;
-	            var onInvalid = _props.onInvalid;
-	            var onValid = _props.onValid;
-
-	            var rest = _objectWithoutProperties(_props, ["step", "min", "max", "precision", "parse", "format", "value", "type", "style", "defaultValue", "onInvalid", "onValid"]);
+	            var _props = this.props,
+	                step = _props.step,
+	                min = _props.min,
+	                max = _props.max,
+	                precision = _props.precision,
+	                parse = _props.parse,
+	                format = _props.format,
+	                mobile = _props.mobile,
+	                value = _props.value,
+	                type = _props.type,
+	                style = _props.style,
+	                defaultValue = _props.defaultValue,
+	                onInvalid = _props.onInvalid,
+	                onValid = _props.onValid,
+	                rest = _objectWithoutProperties(_props, ["step", "min", "max", "precision", "parse", "format", "mobile", "value", "type", "style", "defaultValue", "onInvalid", "onValid"]);
 
 	            // Build the styles
 
@@ -616,7 +611,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            var hasFormControl = props.className && /\bform-control\b/.test(props.className);
 
-	            var mobile = props.mobile == 'auto' ? IS_BROWSER && 'ontouchstart' in document : props.mobile;
+	            if (mobile == 'auto') {
+	                mobile = IS_BROWSER && 'ontouchstart' in document;
+	            }
+
 	            if (typeof mobile == "function") {
 	                mobile = mobile.call(this);
 	            }
@@ -748,7 +746,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    onKeyDown: this._onKeyDown.bind(this),
 	                    onInput: this._onSelectionChange.bind(this),
 	                    onSelect: this._onSelectionChange.bind(this),
-	                    onSelectStart: this._onSelectionChange.bind(this),
+	                    // onSelectStart: this._onSelectionChange.bind(this),
 	                    onFocus: function onFocus() {
 	                        for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
 	                            args[_key5] = arguments[_key5];
@@ -840,7 +838,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    onValid: PropTypes.func,
 	    onInput: PropTypes.func,
 	    onSelect: PropTypes.func,
-	    onSelectStart: PropTypes.func,
+	    // onSelectStart: PropTypes.func,
 	    size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 	    defaultValue: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
@@ -861,7 +859,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    format: null,
 	    // className : '',
 	    mobile: 'auto',
-	    style: {} };
+	    style: {} //,
+	    // noValidate: false
+	};
 	NumericInput.style = {
 
 	    // The wrapper (span)

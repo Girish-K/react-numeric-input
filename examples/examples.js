@@ -72,6 +72,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// import NumericInput from '../index.js';
 
+
 	$(function () {
 	    $('script.jsx').each(function (i, s) {
 	        var div = $('<div/>'),
@@ -129,7 +130,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _inherits(Demo, _React$Component);
 
 	    function Demo() {
-	        var _Object$getPrototypeO;
+	        var _ref;
 
 	        _classCallCheck(this, Demo);
 
@@ -138,8 +139,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 
 	        // var that = this;
-
-	        var _this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(Demo)).call.apply(_Object$getPrototypeO, [this].concat(args)));
+	        var _this = _possibleConstructorReturn(this, (_ref = Demo.__proto__ || Object.getPrototypeOf(Demo)).call.apply(_ref, [this].concat(args)));
 
 	        _this.state = {
 	            inputProps: {
@@ -237,10 +237,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	            return config.map(function (props, propName) {
 	                var editor = null;
-	                var type = props.type;
-	                var name = props.name;
 
-	                var rest = _objectWithoutProperties(props, ["type", "name"]);
+	                var type = props.type,
+	                    name = props.name,
+	                    rest = _objectWithoutProperties(props, ["type", "name"]);
 
 	                if (type == 'text') {
 	                    editor = React.createElement("input", {
@@ -271,7 +271,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                                checked: _this2.state.inputProps[name].on,
 	                                onChange: _this2.toggleProp.bind(_this2, name)
 	                            }),
-	                            " ",
+	                            "\xA0",
 	                            name
 	                        )
 	                    ),
